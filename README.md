@@ -1,4 +1,4 @@
-# Highlite Example Plugin Template
+# Highlite MenuHighliter Plugin
 
 A template repository for creating plugins for the HighLite client. This template showcases the basic structure, lifecycle methods, and how to use static resources like HTML, CSS, images, and audio files.
 
@@ -39,7 +39,7 @@ To build the plugin for production:
 yarn build
 ```
 
-The built plugin will be available in the `dist/` directory as `ExamplePlugin.js`.
+The built plugin will be available in the `dist/` directory as `MenuHighliter.js`.
 
 ## Project Structure
 
@@ -70,8 +70,8 @@ Example-Plugin/
 The main plugin class extends the base `Plugin` class from `@highlite/plugin-api`:
 
 ```typescript
-class ExamplePlugin extends Plugin {
-    pluginName = "ExamplePlugin";
+class MenuHighliter extends Plugin {
+    pluginName = "MenuHighliter";
     author: string = "Your Name";  // Update this with your name
     
     // Plugin lifecycle methods
@@ -190,7 +190,7 @@ Testing your plugin locally is essential before publishing to the Plugin Hub. Hi
 3. **Copy the built plugin**:
    Copy your built plugin file to the HighLite plugins directory:
    ```bash
-   cp dist/ExamplePlugin.js /path/to/HighLiteDesktop/src/renderer/client/plugins/
+   cp dist/MenuHighliter.js /path/to/HighLiteDesktop/src/renderer/client/plugins/
    ```
 
 ### Testing Guidelines

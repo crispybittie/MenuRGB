@@ -148,3 +148,9 @@ dist
 # Vite logs files
 vite.config.js.timestamp-*
 vite.config.ts.timestamp-*
+/EXAMPLE PLUGINS
+src/MenuHighliter.ts
+src/ExamplePlugin.ts
+scripts/inventory_menu_probe.js
+resources/css/base.css
+resources/css/base.css

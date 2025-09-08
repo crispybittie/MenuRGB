@@ -7,4 +7,9 @@
     #example_plugin_div img {
         width: 100%
     }
+
+    /* MenuHighliter: highlight the inventory "Deposit All" action */
+    .mh-inv-deposit-all {
+        color: #ff3366 !important;
+    }
 }
