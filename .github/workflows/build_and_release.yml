@@ -6,8 +6,11 @@ on:
     workflow_dispatch:
         inputs:
             tag:
-                description: 'Tag name for the release'
+                description: "v1.0"
                 required: true
+
+permissions:
+    contents: write
 
 jobs:
     build-and-upload:
@@ -21,7 +24,7 @@ jobs:
             - name: Set up Node.js with Corepack (Yarn)
               uses: actions/setup-node@v4
               with:
-                  node-version: 'lts/*'
+                  node-version: "lts/*"
 
             - name: Enable Corepack and install dependencies with Yarn
               run: |
@@ -31,10 +34,21 @@ jobs:
             - name: Run build script
               run: node build.mjs
 
-            - name: Upload release assets
+            # If triggered by a Release event, GitHub provides upload_url automatically.
+            - name: Upload assets (release event)
+              if: ${{ github.event_name == 'release' }}
               uses: softprops/action-gh-release@v2
               with:
                   files: dist/**
-                  tag_name: ${{ github.event.release.tag_name || inputs.tag }}
+              env:
+                  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+            # If triggered manually, you must tell the action which tag to use.
+            - name: Upload assets (manual tag)
+              if: ${{ github.event_name == 'workflow_dispatch' }}
+              uses: softprops/action-gh-release@v2
+              with:
+                  tag_name: ${{ github.event.inputs.tag }} # <-- not "inputs.tag"
+                  files: dist/**
               env:
                   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
